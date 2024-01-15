@@ -8,7 +8,12 @@ const verticalGap = 100;
 // button dimensions
 const buttonWidth = 150;
 
-// purely chatgpt function
+
+// mainly used GPT as better google search and for debugging
+// asked GPT to generate utility functions such as generating random values
+// further asked how to write an anonymous function and setTimeout/delays to a function call, got used to it and wrote others myself
+
+// purely CHATGPT function
 function generateRandomValue(minValue, maxValue) {
     // Generate a random number between 0 (inclusive) and 1 (exclusive)
     const randomFraction = Math.random();
