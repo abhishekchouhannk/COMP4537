@@ -1,5 +1,3 @@
-import * as userConstants from '../lang/messages/en/user.js'
-
 console.log("Client script loaded")
 
 const colorArray = ["red", "green", "cyan", "beige", "purple", "yellow", "blue"]
@@ -86,7 +84,6 @@ class Game {
     constructor() {
         // initiliaze an array of required size containing all button objects
         this.buttonArray = Array(0);
-        this.intervalId = null;
         this.displayElement = null;
         this.nextButtonToBeClicked = 1; // 1 is the first button to be clicked
         this.handleResize = () => {
@@ -107,9 +104,6 @@ class Game {
         
         this.displayMsg(UserEnum.GAME_STARTED, UserColors.GAME_STARTED, 3);
 
-        // Clear any previous intervals if they exist
-        clearInterval(this.intervalId);
-
         window.removeEventListener('resize', this.handleResize);
 
         this.buttonArray.forEach(button => {
@@ -118,19 +112,31 @@ class Game {
             }, (intervalSeconds - 1) * 1000);
         });
 
-        this.intervalId = setInterval( () => {
-            this.buttonArray.forEach(button => {
+        this.buttonArray.forEach(button => {
+            setTimeout(() => {
                 button.randomizePosition();
+            }, (intervalSeconds) * 1000);
+        });
+
+        setTimeout(() => {
+            for (let i = 0; i < intervalSeconds; i++) {
+                this.buttonArray.forEach(button => {
+                    setTimeout(() => {
+                        button.randomizePosition();
+                    }, (2 * (i + 1)) * 1000);
+                });
+            }
+        }, intervalSeconds * 1000);
+
+        setTimeout(() => {
+            this.buttonArray.forEach(button => {
                 button.activateButton();
             });
-        }, intervalSeconds * 1000); // has to be in milliseconds
+        }, (intervalSeconds + 2 * intervalSeconds) * 1000);
     }
 
     stopGameLoop(text, color) {
         this.displayMsg(text, color, 10);
-
-        // Clear the interval running game loop
-        clearInterval(this.intervalId);
 
         this.buttonArray.forEach(button => {
             button.displayText(button.id);
@@ -140,11 +146,7 @@ class Game {
 
     restart() {
 
-        // clear any existing interval which were set for scrambling buttons
-        clearInterval(this.intervalId);
-
         this.buttonArray = Array(0);
-        this.intervalId = null;
         this.displayElement = null;
         this.nextButtonToBeClicked = 1;
         
@@ -279,66 +281,5 @@ class Game {
 
 
 let game = new Game(1);
-game.setup()
-// game.showButtons(7);
-// game.setupResizeListener();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // showButtons(n) {
-    //     const container = document.createElement("div");
-    //     container.id = "container";
-
-    //     const currentWidth = document.body.offsetWidth;
-    //     console.log(currentWidth);
-        
-    //     // container.textContent = "Div for container";
-
-    //     let currentRow = 0;
-    //     let currentCol = 0;
-
-    //     for (let i = 0; i < n; i++) { // i counts the number of buttons to stuff in whereas row and column count where the buttons should go
-    //         let startXi = startingXValue + currentCol * gapButtons;
-
-    //         if (startXi >= currentWidth - buttonWidth - 10) {
-    //             console.log(`condition triggered, ${i},`)
-    //             currentCol = 0;
-    //             currentRow++;
-    //         }
-    //         this.buttonArray[i] = new Button(startingXValue + currentCol * gapButtons, currentRow * verticalGap, "orange", container);
-    //         this.buttonArray[i].display();
-    //         currentCol++; // increment the column
-    //     }
-
-    //     document.body.appendChild(container);
-    // }
+game.setup();
 
