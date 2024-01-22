@@ -1,2 +1,2 @@
-# COMP4537-Lab0
-My first starter assignment for Internet Soft Architecture course. A memory game to brush up on web stuff.
+# COMP4537
+Repo to store my labs for COMP 4537, Internet Software Architecture
