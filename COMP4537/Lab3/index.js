@@ -19,7 +19,7 @@ server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 })
 
-module.exports = server;
+// module.exports = server;
 
 // module.exports = (req, res) => {
 //   res.status(200).send("<h1>Hello world</h1>");
