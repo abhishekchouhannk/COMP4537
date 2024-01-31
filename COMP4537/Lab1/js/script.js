@@ -142,9 +142,6 @@ class Widget {
         const container = document.getElementById('container');
 
         container.appendChild(rowContainer);
-
-        // create text area element for read only
-
     }
 
     displayText(text) {
@@ -152,8 +149,7 @@ class Widget {
     }
 
     // update the widget ids when an element is removed,
-    // necessary when the button removed is in between, because the order may get 
-    // messed up out of order
+    // necessary when the button removed is in between, because the order may get jumbled
     updateId(id) {
         this.id = id;
     }
@@ -273,10 +269,6 @@ class ContentManager {
                 const widget = new Widget(this.db.texts.length, this);
                 widget.createReadableWidget(this.db.texts[i]);
             }
-            // this.db.texts.forEach((text) => {
-            //     const widget = new Widget(this.db.texts.length, this);
-            //     widget.createReadableWidget(text);
-            // });
         } 
     }
 
