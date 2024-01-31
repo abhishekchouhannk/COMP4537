@@ -1,7 +1,7 @@
 const http = require('http');
 
 function route(req, res) {
-  if (req.url === '/') {
+  if (req.url === '/api/index.js') {
     res.wrtieHead(200, {'Content-Type': 'text/plain'});
     res.end("Hello, this is Abhishek's Node api.");
   }
