@@ -3,7 +3,7 @@ const http = require('http');
 function route(req, res) {
   if (req.url === '/') {
     res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end("Hello, this is Abhishek's Node api.");
+    res.end("Hello, this is Abhishek's api.");
   }
   else {
     res.writeHead(400, {'Content-Type': 'text/plain'});
