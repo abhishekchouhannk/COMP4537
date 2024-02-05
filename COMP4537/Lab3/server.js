@@ -10,7 +10,7 @@ function route(req, res) {
   const query = parsedUrl.query; // Extract the query parameters
   const name = query.name || 'Friend'; // Use a default value if 'name' parameter is not provided
   
-  if (parsedUrl.pathname === '/getDate') { // Check if the request path matches '/getDate'
+  if (parsedUrl.pathname === '/COMP4537/labs/3/getDate') { // Check if the request path matches '/getDate'
     const currentDate = new Date().toLocaleString(); // Get the current date and time
     const response = `${userFacingString.replace('%1', name)} * ${utils.getCurrentDateTimeString()};`
 
