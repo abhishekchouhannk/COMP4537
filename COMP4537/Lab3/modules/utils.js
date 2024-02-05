@@ -21,4 +21,4 @@ function getCurrentDateTimeString() {
   return `${day} ${month} ${String(date).padStart(2, '0')} ${year} ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')} ${timezoneString} (Pacific Standard Time)`;
 }
 
-export { getCurrentDateTimeString };
+module.exports = { getCurrentDateTimeString };
