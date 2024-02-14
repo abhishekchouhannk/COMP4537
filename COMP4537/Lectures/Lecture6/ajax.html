@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XMLHttpRequest Example</title>
+</head>
+
+<body>
+
+
+  <button type="button" onclick="requestSecret()">
+    Get Secret
+  </button>
+  <p id="secretResult"></p>
+
+  <script>
+    function requestSecret() {
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', 'http://apiz.ca/secrete', true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            document.getElementById('secretResult').textContent = xhr.responseText;
+          } else {
+            document.getElementById('secretResult').textContent = 'Error: ' + xhr.statusText;
+          }
+        }
+      };
+      xhr.send(JSON.stringify({question: "What's the secret?" }));
+    }
+  </script>
+</body>
+
+</html>
