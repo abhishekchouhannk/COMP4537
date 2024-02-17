@@ -28,13 +28,6 @@ function saveDictionary(dictionary) {
 let requestsMade = 0;
 let dictionary = loadDictionary();
 
-// // empty dictionary at first
-// const dictionary = {
-//   owner  : "Abhishek",
-//   client : "Amarjot",
-//   lab    : "Lab4"
-// };
-
 function handleGetRequest(req, res) {
 
   if (req.url != "/favicon.ico") {
@@ -61,9 +54,6 @@ function handlePostRequest(req, res) {
 
 
   let data = '';
-
-  // const parsedUrl = url.parse(req.url, true);
-  // const query = parsedUrl.query;
 
   req.on('data', chunk => {
     data += chunk;
