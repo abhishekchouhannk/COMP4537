@@ -3,13 +3,12 @@
 const http = require('http');
 const url = require('url');
 
-let requestsMade = 0;
-
 // empty dictionary at first
 const dictionary = {
   owner  : "Abhishek",
   client : "Amarjot",
-  lab    : "Lab4"
+  lab    : "Lab4",
+  THISNOTAWORD$$Requests: 0
 };
 
 
@@ -17,7 +16,7 @@ function handleGetRequest(req, res) {
 
   if (req.url != "/favicon.ico") {
     // append number of requests made
-    requestsMade++;
+    dictionary['THISNOTAWORD$$Requests']++;
   }
   const parsedUrl = url.parse(req.url, true);
 
@@ -29,6 +28,9 @@ function handleGetRequest(req, res) {
 }
 
 function handlePostRequest(req, res) {
+
+  dictionary['THISNOTAWORD$$Requests']++;
+
   if (req.url !== '/dictionary/writeWord') {
     res.writeHead(404, {'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*'});
     res.end('Not Found');
@@ -101,7 +103,7 @@ function sendDefinition(req, res) {
 // serve get for '/' route
 function trivia(res) {
   const jsonObj = {
-    totalRequests : requestsMade,
+    totalRequests : dictionary['THISNOTAWORD$$Requests'],
     hello         : 'world',
     owner         : 'Abhishek Chouhan'
   }
