@@ -77,6 +77,15 @@ function route(req, res) {
   else if (req.method === 'POST') {
     handlePostRequest(req, res);
   }
+  else if (req.method === 'OPTIONS') {
+    // Handle preflight request
+    res.writeHead(200, {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type'
+    });
+    res.end();
+  }
   else {
     res.writeHead(404, {'Content-Type': 'text/plain'});
     res.end('Not Found');
@@ -122,25 +131,25 @@ server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-fetch('/dictionary/writeWord', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    word: 'present',
-    definition: 'a past future being experienced right now'
-  })
-})
-.then(response => {
-  if (!response.ok) {
-    throw new Error('Network response was not ok');
-  }
-  return response.text();
-})
-.then(data => {
-  console.log(data); // Process response data here
-})
-.catch(error => {
-  console.error('There was a problem with your fetch operation:', error);
-});
+// fetch('/dictionary/writeWord', {
+//   method: 'POST',
+//   headers: {
+//     'Content-Type': 'application/json'
+//   },
+//   body: JSON.stringify({
+//     word: 'present',
+//     definition: 'a past future being experienced right now'
+//   })
+// })
+// .then(response => {
+//   if (!response.ok) {
+//     throw new Error('Network response was not ok');
+//   }
+//   return response.text();
+// })
+// .then(data => {
+//   console.log(data); // Process response data here
+// })
+// .catch(error => {
+//   console.error('There was a problem with your fetch operation:', error);
+// });
