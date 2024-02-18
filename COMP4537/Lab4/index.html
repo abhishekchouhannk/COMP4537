@@ -3,22 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>POST Request Example</title>
+  <title>POST and GET Request Example</title>
 </head>
 <body>
-  <h1>POST Request Example</h1>
-  <button id="postButton">Make POST Request</button>
+  <!-- Input fields and buttons for POST request -->
+  <h2>POST Request</h2>
+  <input type="text" id="postWord" placeholder="Word">
+  <input type="text" id="postDefinition" placeholder="Definition">
+  <button id="postButton">Put Word</button>
+
+  <!-- Input field and button for GET request -->
+  <h2>GET Request</h2>
+  <input type="text" id="getWord" placeholder="Word to Fetch">
+  <button id="getButton">Get Word</button>
+
+  <!-- Div to display response from GET request -->
+  <div id="getResponse"></div>
 
   <script>
     document.getElementById('postButton').addEventListener('click', () => {
+      const word = document.getElementById('postWord').value;
+      const definition = document.getElementById('postDefinition').value;
+
       fetch('https://comp-4537-lab4-eight.vercel.app/dictionary/writeWord', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          word: 'present',
-          definition: 'a past future being experienced right now'
+          word: word,
+          definition: definition
         })
       })
       .then(response => {
@@ -29,6 +43,25 @@
       })
       .then(data => {
         console.log(data); // Process response data here
+      })
+      .catch(error => {
+        console.error('There was a problem with your fetch operation:', error);
+      });
+    });
+
+    document.getElementById('getButton').addEventListener('click', () => {
+      const wordToFetch = document.getElementById('getWord').value;
+
+      fetch(`https://comp-4537-lab4-eight.vercel.app/dictionary?word=${wordToFetch}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        const responseDiv = document.getElementById('getResponse');
+        responseDiv.innerText = `Success: ${data.success}, Word: ${data.word}, Definition: ${data.definition}`;
       })
       .catch(error => {
         console.error('There was a problem with your fetch operation:', error);

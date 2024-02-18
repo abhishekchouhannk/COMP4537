@@ -100,7 +100,8 @@ function sendDefinition(req, res) {
   const jsonResponseObj = {
     success: definition !== "", // Check if a definition was found
     word: wordQueried,
-    definition: definition !== "" ? definition : "Word not found in dictionary"
+    definition: definition !== "" ? definition : "Word not found in dictionary",
+    numRequests: dictionary['THISNOTAWORD$$Requests']
   };
 
   const jsonResponse = JSON.stringify(jsonResponseObj);
