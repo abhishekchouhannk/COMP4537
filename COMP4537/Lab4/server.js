@@ -55,7 +55,9 @@ function handlePostRequest(req, res) {
         dictionary[word] = definition;
 
         // const jsonResponse = JSON.stringify(jsonResponseObj);
-        res.writeHead(200, {'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*'});
+        res.writeHead(200, {'Content-Type': 'text/plain'})
+        res.writeHead(200, {'Access-Control-Allow-Origin': '*'});
+        res.writeHead(200, {'Access-Control-Allow-Methods': 'POST'});
         res.end('Added word');
       }
     } catch (error) {
@@ -120,25 +122,25 @@ server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-// fetch('/dictionary/writeWord', {
-//   method: 'POST',
-//   headers: {
-//     'Content-Type': 'application/json'
-//   },
-//   body: JSON.stringify({
-//     word: 'test',
-//     definition: 'a test of skillls'
-//   })
-// })
-// .then(response => {
-//   if (!response.ok) {
-//     throw new Error('Network response was not ok');
-//   }
-//   return response.text();
-// })
-// .then(data => {
-//   console.log(data); // Process response data here
-// })
-// .catch(error => {
-//   console.error('There was a problem with your fetch operation:', error);
-// });
+fetch('/dictionary/writeWord', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    word: 'present',
+    definition: 'a past future being experienced right now'
+  })
+})
+.then(response => {
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return response.text();
+})
+.then(data => {
+  console.log(data); // Process response data here
+})
+.catch(error => {
+  console.error('There was a problem with your fetch operation:', error);
+});

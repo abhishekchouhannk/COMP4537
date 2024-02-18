@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>POST Request Example</title>
+</head>
+<body>
+  <h1>POST Request Example</h1>
+  <button id="postButton">Make POST Request</button>
+
+  <script>
+    document.getElementById('postButton').addEventListener('click', () => {
+      fetch('https://comp-4537-lab4-eight.vercel.app/dictionary/writeWord', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          word: 'present',
+          definition: 'a past future being experienced right now'
+        })
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.text();
+      })
+      .then(data => {
+        console.log(data); // Process response data here
+      })
+      .catch(error => {
+        console.error('There was a problem with your fetch operation:', error);
+      });
+    });
+  </script>
+</body>
+</html>
