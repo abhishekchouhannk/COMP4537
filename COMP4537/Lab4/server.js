@@ -2,31 +2,16 @@
 
 const http = require('http');
 const url = require('url');
-const fs = require('fs'); // for persistence utilize a file system
-
-const FILE_PATH = 'data.json';
-
-function loadDictionary() {
-  try {
-    const data = fs.readFileSync(FILE_PATH);
-    return JSON.parse(data);
-  } catch (error) {
-    console.log('Error loading dictionary:', error);
-    return {};
-  }
-}
-
-function saveDictionary(dictionary) {
-  try {
-    fs.writeFileSync(FILE_PATH, JSON.stringify(dictionary, null, 2));
-    console.log('Dictionary saved succesfully.');
-  } catch (error) {
-    console.log('Error saving dictionary:', error);
-  }
-}
 
 let requestsMade = 0;
-let dictionary = loadDictionary();
+
+// empty dictionary at first
+const dictionary = {
+  owner  : "Abhishek",
+  client : "Amarjot",
+  lab    : "Lab4"
+};
+
 
 function handleGetRequest(req, res) {
 
@@ -34,8 +19,6 @@ function handleGetRequest(req, res) {
     // append number of requests made
     requestsMade++;
   }
-  
-  // const name = query.name || 'Friend';
   const parsedUrl = url.parse(req.url, true);
 
   if (parsedUrl.pathname === '/') {
@@ -68,8 +51,6 @@ function handlePostRequest(req, res) {
 
       if (word && definition) { // if both word and definition were sent
         dictionary[word] = definition;
-
-        saveDictionary(dictionary);
 
         // const jsonResponse = JSON.stringify(jsonResponseObj);
         res.writeHead(200, {'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*'});
