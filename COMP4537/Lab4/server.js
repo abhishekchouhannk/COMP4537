@@ -28,7 +28,6 @@ function handleGetRequest(req, res) {
 }
 
 function handlePostRequest(req, res) {
-
   dictionary['THISNOTAWORD$$Requests']++;
 
   if (req.url !== '/dictionary/writeWord') {
@@ -37,6 +36,9 @@ function handlePostRequest(req, res) {
     return;
   }
 
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   let data = '';
 
@@ -53,11 +55,7 @@ function handlePostRequest(req, res) {
 
       if (word && definition) { // if both word and definition were sent
         dictionary[word] = definition;
-
-        // const jsonResponse = JSON.stringify(jsonResponseObj);
-        res.writeHead(200, {'Content-Type': 'text/plain'})
-        res.writeHead(200, {'Access-Control-Allow-Origin': '*'});
-        res.writeHead(200, {'Access-Control-Allow-Methods': 'POST'});
+        res.writeHead(200, {'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*'});
         res.end('Added word');
       }
     } catch (error) {
@@ -65,9 +63,9 @@ function handlePostRequest(req, res) {
       res.writeHead(400, {'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*'});
       res.end('Invalid json data');
     }
-
   });
 }
+
 
 function route(req, res) {
   console.log(`Received ${req.method} request for ${req.url}`);
