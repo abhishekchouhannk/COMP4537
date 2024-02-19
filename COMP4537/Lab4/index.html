@@ -61,7 +61,7 @@
       })
       .then(data => {
         const responseDiv = document.getElementById('getResponse');
-        responseDiv.innerText = `Success: ${data.success}, Word: ${data.word}, Definition: ${data.definition}`;
+        responseDiv.innerText = `Success: ${data.success}, Word: ${data.word}, Definition: ${data.definition}, Requests: ${data.numRequests}`;
       })
       .catch(error => {
         console.error('There was a problem with your fetch operation:', error);
