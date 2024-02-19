@@ -55,22 +55,22 @@ function handlePostRequest(req, res) {
 
       if (word && definition) { // if both word and definition were sent
         if (dictionary[word]) {
-          sendRes('Word Already exists.');
+          sendRes(res, 'Word Already exists.');
         } else {
           dictionary[word] = definition;
-          sendRes('Word Added succesfully.')
+          sendRes(res, 'Word Added succesfully.')
         }
       } else {
-        sendRes('Error on server side.')
+        sendRes(res, 'Error on server side.')
       }
     } catch (error) {
       console.log(error);
-      sendRes('Error processing json on server side.')
+      sendRes(res, 'Error processing json on server side.')
     }
   });
 }
 
-function sendRes(message) {
+function sendRes(res, message) {
   const jsonResponse = JSON.stringify({ success: true, message: message, numRequests: dictionary['THISNOTAWORD$$Requests'] });
   res.writeHead(200, {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'});
   res.end(jsonResponse);
