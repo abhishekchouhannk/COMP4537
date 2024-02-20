@@ -1,0 +1,13 @@
+# components help write better reusable and modular code for our application
+
+
+    // items = [];
+	// const message = items.length === 0 ? <p>No item found</p> : null; // or use a function as below
+
+	// const getMessage() = () => {
+	// 	return items.length === 0 ? <p> No item found</p> : null}
+	//
+
+
+	// the items.length === 0 && anyValue will return anyValue if thefirst condition is true, this is weird but a cool way to shorten 
+	// if syntax

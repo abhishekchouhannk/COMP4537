@@ -1,0 +1,67 @@
+/* .app-wrapper {
+  width: 100%; /* Set the width of the wrapper div as a fraction of the parent's width */
+
+/* .container {
+  display: flex;
+  align-items: center;
+	justify-content: space-between;
+  width: 100%; /* Set the width of the container relative to its parent */
+
+.seperator {
+	width: 0.5px;
+	height: 40%;
+	background-color: black;
+}
+
+.statBar {
+	display: flex;
+	align-items: center;
+	height: 100%;
+	width: 50%;
+	justify-content: space-between;
+}
+
+.progressBar {
+	display: flex;
+	align-items: center;
+	height: 120px;
+	width: 50%;
+	justify-content: space-between;
+}
+
+.upperDetails {
+
+	display: flex;
+	align-items: center;
+	height: 80px;
+	/* width: 100%; */
+	justify-content: space-between;
+}
+
+.lowerDetails {
+	display: flex;
+	/* width: 200px; */
+	align-items: center;
+	justify-content: space-between;
+}
+
+.projects {
+	/* margin-left: 5px; */
+	margin: 10px;
+	padding: 10px;
+	border-radius: 20px;
+	background-color: rgb(193, 192, 192);
+  display: flex;
+  flex-direction: column;
+  /* width: 100%; */
+}
+
+.project-container {
+	width: 100%;
+}
+
+.upperDetails,
+.lowerDetails {
+}
+
+
